@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CoUgotowacRouteImport } from './routes/co-ugotowac'
 import { Route as ListaZakupowRouteImport } from './routes/lista-zakupow'
 import { Route as SkanujRouteImport } from './routes/skanuj'
 import { Route as UstawieniaRouteImport } from './routes/ustawienia'
@@ -19,6 +20,11 @@ import { Route as ZapasyRouteImport } from './routes/zapasy'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CoUgotowacRoute = CoUgotowacRouteImport.update({
+  id: '/co-ugotowac',
+  path: '/co-ugotowac',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ListaZakupowRoute = ListaZakupowRouteImport.update({
@@ -49,6 +55,7 @@ const ZapasyRoute = ZapasyRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/co-ugotowac': typeof CoUgotowacRoute
   '/lista-zakupow': typeof ListaZakupowRoute
   '/skanuj': typeof SkanujRoute
   '/ustawienia': typeof UstawieniaRoute
@@ -57,6 +64,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/co-ugotowac': typeof CoUgotowacRoute
   '/lista-zakupow': typeof ListaZakupowRoute
   '/skanuj': typeof SkanujRoute
   '/ustawienia': typeof UstawieniaRoute
@@ -66,6 +74,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/co-ugotowac': typeof CoUgotowacRoute
   '/lista-zakupow': typeof ListaZakupowRoute
   '/skanuj': typeof SkanujRoute
   '/ustawienia': typeof UstawieniaRoute
@@ -76,6 +85,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/co-ugotowac'
     | '/lista-zakupow'
     | '/skanuj'
     | '/ustawienia'
@@ -84,6 +94,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/co-ugotowac'
     | '/lista-zakupow'
     | '/skanuj'
     | '/ustawienia'
@@ -92,6 +103,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/co-ugotowac'
     | '/lista-zakupow'
     | '/skanuj'
     | '/ustawienia'
@@ -101,6 +113,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CoUgotowacRoute: typeof CoUgotowacRoute
   ListaZakupowRoute: typeof ListaZakupowRoute
   SkanujRoute: typeof SkanujRoute
   UstawieniaRoute: typeof UstawieniaRoute
@@ -115,6 +128,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/co-ugotowac': {
+      id: '/co-ugotowac'
+      path: '/co-ugotowac'
+      fullPath: '/co-ugotowac'
+      preLoaderRoute: typeof CoUgotowacRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/lista-zakupow': {
@@ -157,6 +177,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CoUgotowacRoute: CoUgotowacRoute,
   ListaZakupowRoute: ListaZakupowRoute,
   SkanujRoute: SkanujRoute,
   UstawieniaRoute: UstawieniaRoute,
