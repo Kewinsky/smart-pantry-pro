@@ -10,33 +10,102 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ListaZakupowRouteImport } from './routes/lista-zakupow'
+import { Route as SkanujRouteImport } from './routes/skanuj'
+import { Route as UstawieniaRouteImport } from './routes/ustawienia'
+import { Route as WykorzystajRouteImport } from './routes/wykorzystaj'
+import { Route as ZapasyRouteImport } from './routes/zapasy'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ListaZakupowRoute = ListaZakupowRouteImport.update({
+  id: '/lista-zakupow',
+  path: '/lista-zakupow',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SkanujRoute = SkanujRouteImport.update({
+  id: '/skanuj',
+  path: '/skanuj',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UstawieniaRoute = UstawieniaRouteImport.update({
+  id: '/ustawienia',
+  path: '/ustawienia',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WykorzystajRoute = WykorzystajRouteImport.update({
+  id: '/wykorzystaj',
+  path: '/wykorzystaj',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ZapasyRoute = ZapasyRouteImport.update({
+  id: '/zapasy',
+  path: '/zapasy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/lista-zakupow': typeof ListaZakupowRoute
+  '/skanuj': typeof SkanujRoute
+  '/ustawienia': typeof UstawieniaRoute
+  '/wykorzystaj': typeof WykorzystajRoute
+  '/zapasy': typeof ZapasyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/lista-zakupow': typeof ListaZakupowRoute
+  '/skanuj': typeof SkanujRoute
+  '/ustawienia': typeof UstawieniaRoute
+  '/wykorzystaj': typeof WykorzystajRoute
+  '/zapasy': typeof ZapasyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/lista-zakupow': typeof ListaZakupowRoute
+  '/skanuj': typeof SkanujRoute
+  '/ustawienia': typeof UstawieniaRoute
+  '/wykorzystaj': typeof WykorzystajRoute
+  '/zapasy': typeof ZapasyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/lista-zakupow'
+    | '/skanuj'
+    | '/ustawienia'
+    | '/wykorzystaj'
+    | '/zapasy'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/lista-zakupow'
+    | '/skanuj'
+    | '/ustawienia'
+    | '/wykorzystaj'
+    | '/zapasy'
+  id:
+    | '__root__'
+    | '/'
+    | '/lista-zakupow'
+    | '/skanuj'
+    | '/ustawienia'
+    | '/wykorzystaj'
+    | '/zapasy'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ListaZakupowRoute: typeof ListaZakupowRoute
+  SkanujRoute: typeof SkanujRoute
+  UstawieniaRoute: typeof UstawieniaRoute
+  WykorzystajRoute: typeof WykorzystajRoute
+  ZapasyRoute: typeof ZapasyRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +117,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/lista-zakupow': {
+      id: '/lista-zakupow'
+      path: '/lista-zakupow'
+      fullPath: '/lista-zakupow'
+      preLoaderRoute: typeof ListaZakupowRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/skanuj': {
+      id: '/skanuj'
+      path: '/skanuj'
+      fullPath: '/skanuj'
+      preLoaderRoute: typeof SkanujRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ustawienia': {
+      id: '/ustawienia'
+      path: '/ustawienia'
+      fullPath: '/ustawienia'
+      preLoaderRoute: typeof UstawieniaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/wykorzystaj': {
+      id: '/wykorzystaj'
+      path: '/wykorzystaj'
+      fullPath: '/wykorzystaj'
+      preLoaderRoute: typeof WykorzystajRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/zapasy': {
+      id: '/zapasy'
+      path: '/zapasy'
+      fullPath: '/zapasy'
+      preLoaderRoute: typeof ZapasyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ListaZakupowRoute: ListaZakupowRoute,
+  SkanujRoute: SkanujRoute,
+  UstawieniaRoute: UstawieniaRoute,
+  WykorzystajRoute: WykorzystajRoute,
+  ZapasyRoute: ZapasyRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
