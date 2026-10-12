@@ -18,8 +18,8 @@ const base: Array<[string,string,number,string,string,string]> = [
 const dates = ["2026-10-12","2026-10-13","2026-10-14","2026-10-15"];
 export const initialProducts: Product[] = base.map((p, index) => ({
   id: p[0], name: p[1], quantity: p[2], unit: p[3], category: p[4], storageLocation: p[5] as Product["storageLocation"],
-  addedAt: index < 5 ? "2026-10-12" : "2026-10-08", estimatedUseBy: index < 4 ? dates[index] : index < 12 ? "2026-10-18" : "2026-11-20",
-  freshnessConfidence: index < 4 ? "medium" : "high", sourceReceiptId: index < 5 ? "r-biedronka" : undefined, status: "active",
+  addedAt: index < 5 ? "2026-10-12" : "2026-10-08", estimatedUseBy: index < 4 ? (dates[index] ?? "2026-10-15") : index < 12 ? "2026-10-18" : "2026-11-20",
+  freshnessConfidence: index < 4 ? "medium" : "high", ...(index < 5 ? { sourceReceiptId: "r-biedronka" } : {}), status: "active",
 }));
 
 export const sampleReceiptItems: ReceiptItem[] = [

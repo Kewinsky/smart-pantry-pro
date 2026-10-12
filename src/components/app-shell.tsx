@@ -31,6 +31,6 @@ export function AppShell({ children }: { children: ReactNode }) {
   </div>;
 }
 
-function MobileLink({to,label,icon:Icon,active}:{to:"/"|"/zapasy"|"/wykorzystaj"|"/lista-zakupow";label:string;icon:typeof Home;active:boolean}) {
+function MobileLink({to,label,icon:Icon,active}:{to:"/"|"/zapasy"|"/wykorzystaj"|"/lista-zakupow"|"/ustawienia";label:string;icon:typeof Home;active:boolean}) {
   return <Link to={to} className={cn("flex flex-col items-center gap-1 py-3 text-[10px] font-semibold text-muted-foreground", active && "text-primary")}><Icon className="size-5" />{label}</Link>;
 }
