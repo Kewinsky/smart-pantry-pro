@@ -10,33 +10,53 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as WykorzystajRouteImport } from './routes/wykorzystaj'
+import { Route as ZapasyRouteImport } from './routes/zapasy'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WykorzystajRoute = WykorzystajRouteImport.update({
+  id: '/wykorzystaj',
+  path: '/wykorzystaj',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ZapasyRoute = ZapasyRouteImport.update({
+  id: '/zapasy',
+  path: '/zapasy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/wykorzystaj': typeof WykorzystajRoute
+  '/zapasy': typeof ZapasyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/wykorzystaj': typeof WykorzystajRoute
+  '/zapasy': typeof ZapasyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/wykorzystaj': typeof WykorzystajRoute
+  '/zapasy': typeof ZapasyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/wykorzystaj' | '/zapasy'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/wykorzystaj' | '/zapasy'
+  id: '__root__' | '/' | '/wykorzystaj' | '/zapasy'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  WykorzystajRoute: typeof WykorzystajRoute
+  ZapasyRoute: typeof ZapasyRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +68,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/wykorzystaj': {
+      id: '/wykorzystaj'
+      path: '/wykorzystaj'
+      fullPath: '/wykorzystaj'
+      preLoaderRoute: typeof WykorzystajRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/zapasy': {
+      id: '/zapasy'
+      path: '/zapasy'
+      fullPath: '/zapasy'
+      preLoaderRoute: typeof ZapasyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  WykorzystajRoute: WykorzystajRoute,
+  ZapasyRoute: ZapasyRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
